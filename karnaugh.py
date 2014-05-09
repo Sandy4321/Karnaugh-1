@@ -71,16 +71,33 @@ def mapMax(array):
             m = max(i)
     return m
 
+# Takes the values in an array and returns a new
+# array with the bit, b, of that value as the
+# element of the new array.
+# 0 indexed
+# Big endian
+# Parameter(s):
+#     array is a list of lists
+#     b is an integer
+def bitArray(array, b):
+    newArray = []
+    for i in array:
+        newRow = []
+        for j in i:
+            newRow.append(getBit(j, b))
+        newArray.append(newRow)
+    return newArray
+
 def main():
     if(len(sys.argv) == 2):
         if(sys.argv[1] == "test"):
-            # rev tests
+            # rev tests (1 - 2)
             l = [1, 1, 2, 3, 5, 8]
             rl = [8, 5, 3, 2, 1, 1]
             testing.equality(l, rev(rl))
             testing.inequality(rev(l), rev(rl))
 
-            # karnaughList tests
+            # karnaughList tests (3 - 6)
             kl1 = [0, 1]
             kl2 = [0, 1, 3, 2]
             kl3 = [0, 1, 3, 2, 6, 7, 5, 4]
@@ -90,7 +107,7 @@ def main():
             testing.equality(karnaughList(3), kl3)
             testing.equality(karnaughList(4), kl4)
 
-            # getBit tests
+            # getBit tests (7 - 26)
             testing.equality(getBit(4, 3), 0)
             testing.equality(getBit(4, 2), 1)
             testing.equality(getBit(4, 1), 0)
@@ -99,22 +116,38 @@ def main():
                 n = (2 ** 16) - 1
                 testing.equality(getBit(n, i), 1)
 
-            # twoArgumentFunction tests
+            # twoArgumentFunction tests (27 - 29)
             testing.equality(twoArgumentFunction(1, 2), 3)
             testing.equality(twoArgumentFunction(3, 5), 8)
             testing.equality(twoArgumentFunction(6, 6), 12)
 
-            # karnaughMap tests
+            # karnaughMap tests (30 - 31)
             km1 = [[0, 1], [1, 2]]
             km2 = [[0, 1, 3, 2], [1, 2, 4, 3], [3, 4, 6, 5], [2, 3, 5, 4]]
             testing.equality(karnaughMap(1), km1)
             testing.equality(karnaughMap(2), km2)
 
-            # mapMax tests
+            # mapMax tests (32 - 36)
             testing.equality(mapMax(karnaughMap(1)), 2)
             testing.equality(mapMax(karnaughMap(2)), 6)
             testing.equality(mapMax(karnaughMap(3)), 14)
             testing.equality(mapMax(karnaughMap(4)), 30)
+
+            # bitArray tests (37 - 42)
+            ba10 = [[0, 1], [1, 0]]
+            ba11 = [[0, 0], [0, 1]]
+            ba20 = [[0, 1, 1, 0], [1, 0, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0]]
+            ba21 = [[0, 0, 1, 1], [0, 1, 0, 1], [1, 0, 1, 0], [1, 1, 0, 0]]
+            ba22 = [[0, 0, 0, 0], [0, 0, 1, 0], [0, 1, 1, 1], [0, 0, 1, 1]]
+            ba23 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+            km1 = karnaughMap(1)
+            km2 = karnaughMap(2)
+            testing.equality(bitArray(km1, 0), ba10)
+            testing.equality(bitArray(km1, 1), ba11)
+            testing.equality(bitArray(km2, 0), ba20)
+            testing.equality(bitArray(km2, 1), ba21)
+            testing.equality(bitArray(km2, 2), ba22)
+            testing.equality(bitArray(km2, 3), ba23)
 
             testing.main()
         else:
