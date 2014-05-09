@@ -32,7 +32,7 @@ def karnaughList(bits):
 # Parameter(s)
 def getBit(n, b):
     mod = 2 ** b
-    return (n % (1 + mod)) / mod 
+    return (n % (2 * mod)) / mod 
 
 
 def main():
@@ -49,16 +49,19 @@ def main():
             kl2 = [0, 1, 3, 2]
             kl3 = [0, 1, 3, 2, 6, 7, 5, 4]
             kl4 = [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
-            testing.equality(kl1, karnaughList(1))
-            testing.equality(kl2, karnaughList(2))
-            testing.equality(kl3, karnaughList(3))
-            testing.equality(kl4, karnaughList(4))
+            testing.equality(karnaughList(1), kl1)
+            testing.equality(karnaughList(2), kl2)
+            testing.equality(karnaughList(3), kl3)
+            testing.equality(karnaughList(4), kl4)
 
             # getBit tests
-            testing.equality(0, getBit(4, 3))
-            testing.equality(1, getBit(4, 2))
-            testing.equality(0, getBit(4, 1))
-            testing.equality(0, getBit(4, 0))
+            testing.equality(getBit(4, 3), 0)
+            testing.equality(getBit(4, 2), 1)
+            testing.equality(getBit(4, 1), 0)
+            testing.equality(getBit(4, 0), 0)
+            for i in range(16):
+                n = (2 ** 16) - 1
+                testing.equality(getBit(n, i), 1)
 
             testing.main()
     else:
