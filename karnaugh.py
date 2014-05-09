@@ -36,7 +36,7 @@ def getBit(n, b):
 
 
 def main():
-    if(len(sys.argv) > 1):
+    if(len(sys.argv) == 2):
         if(sys.argv[1] == "test"):
             # rev tests
             l = [1, 1, 2, 3, 5, 8]
@@ -64,8 +64,12 @@ def main():
                 testing.equality(getBit(n, i), 1)
 
             testing.main()
+        else:
+            print karnaugh(int(sys.argv[1]))
     else:
-        print karnaugh(3)
+        print "Use: $ python karnaugh.py i\n"
+        print "Where i is the minimum number of bits needed to"
+        print "express the largest number in the list."
 
 if __name__ == "__main__":
     main()
