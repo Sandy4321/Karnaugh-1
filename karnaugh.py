@@ -15,7 +15,7 @@ def rev(l):
 # the largest number
 # Parameter(s):
 #     bits is an integer
-def karnaugh(bits):
+def karnaughList(bits):
     l = [0, 1]
     length = 2 ** bits
     p = 2
@@ -26,6 +26,15 @@ def karnaugh(bits):
         p = p * 2
     return l
 
+# Gets the bit, b, of a number, n
+# 0 indexed
+# big endian
+# Parameter(s)
+def getBit(n, b):
+    mod = 2 ** b
+    return (n % (1 + mod)) / mod 
+
+
 def main():
     if(len(sys.argv) > 1):
         if(sys.argv[1] == "test"):
@@ -34,6 +43,23 @@ def main():
             rl = [8, 5, 3, 2, 1, 1]
             testing.equality(l, rev(rl))
             testing.inequality(rev(l), rev(rl))
+
+            # karnaugh tests
+            kl1 = [0, 1]
+            kl2 = [0, 1, 3, 2]
+            kl3 = [0, 1, 3, 2, 6, 7, 5, 4]
+            kl4 = [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
+            testing.equality(kl1, karnaughList(1))
+            testing.equality(kl2, karnaughList(2))
+            testing.equality(kl3, karnaughList(3))
+            testing.equality(kl4, karnaughList(4))
+
+            # getBit tests
+            testing.equality(0, getBit(4, 3))
+            testing.equality(1, getBit(4, 2))
+            testing.equality(0, getBit(4, 1))
+            testing.equality(0, getBit(4, 0))
+
             testing.main()
     else:
         print karnaugh(3)
