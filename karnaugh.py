@@ -88,6 +88,10 @@ def bitArray(array, b):
         newArray.append(newRow)
     return newArray
 
+
+
+
+
 def main():
     if(len(sys.argv) == 2):
         if(sys.argv[1] == "test"):
