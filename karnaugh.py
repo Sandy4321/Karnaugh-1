@@ -88,9 +88,23 @@ def bitArray(array, b):
         newArray.append(newRow)
     return newArray
 
-
-
-
+# Returns the start and end of each group of 1's
+# in a row
+# Parameter(s):
+#     l is a list
+def rowLength(l):
+    sets = []
+    i = 0
+    while(True):
+        s = []
+        if(l[i] == 1):
+            s.append(i)
+            i = i + 1
+            while(l[i] == 1):
+                i = i + 1
+            s.append(i)
+        sets.append(s)
+    return sets
 
 def main():
     if(len(sys.argv) == 2):
