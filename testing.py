@@ -11,7 +11,7 @@ failed = 0
 # Parameter(s):
 #     item1 is an object
 #     item2 is an object
-def equality(item1, item2):
+def equality(testName, item1, item2):
     global passed
     global failed
     if(item1 == item2):
@@ -19,7 +19,7 @@ def equality(item1, item2):
         return True
     else:
         failed = failed + 1
-        print "\nTest " + str(passed + failed) + ":"
+        print "\n" + testName + ":"
         print "\t" + str(item1) + " does not equal " + str(item2)
         print "even though it should.\n"
         return False
@@ -28,7 +28,7 @@ def equality(item1, item2):
 # Parameter(s):
 #     item1 is an object
 #     item2 is an object
-def inequality(item1, item2):
+def inequality(testName, item1, item2):
     global passed
     global failed
     if(item1 != item2):
@@ -36,7 +36,7 @@ def inequality(item1, item2):
         return True
     else:
         failed = failed + 1
-        print "\nTest " + str(passed + failed) + ":"
+        print "\n" + testName + ":"
         print "\t" + str(item1) + " equals " + str(item2)
         print "even though it should not.\n"
         return False
